@@ -6,9 +6,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // allow frontend to connect
+    origin: ["http://localhost:5173", "http://localhost:3000"], // allow frontend to connect
+    methods: ["GET", "POST"]
   }
 });
+
+// Configure CORS for Express
+const cors = require("cors");
+app.use(cors({ origin: ["http://localhost:5173", "http://localhost:3000"] }));
 
 // Import and initialize socket handler
 const socketHandler = require("./sockets/socketHandler");
