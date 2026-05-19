@@ -19,9 +19,13 @@ app.use(express.json());
 
 const executeStudentCrudOperations = require("./config/db");
 const userRoutes = require("./routes/userRoutes")
+const roomRoutes = require("./routes/roomRoutes.js")
+const messageRoutes = require("./routes/messageRoutes.js")
 //middleware
 
 app.use("/api", userRoutes);
+app.use("/api/rooms", roomRoutes);
+app.use("/api/messages", messageRoutes);
 async function main() {
     await executeStudentCrudOperations();
     server.listen(3000, () => {
